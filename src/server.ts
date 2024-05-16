@@ -5,6 +5,7 @@ import { ICalcEventListener } from "./interfaces/ICalcEventListener";
 import { CompositeCalculator } from "./providers/CompositeCalculator";
 
 const main = async () => {
+  let pool: number = 0;
   const server: SharedWorkerServer<
     ICalcConfig,
     CompositeCalculator,
@@ -18,13 +19,19 @@ const main = async () => {
         ICalcEventListener
       >,
     ) => {
-      const header: ICalcConfig = acceptor.header;
+      // LIST UP PROPERTIES
+      const config: ICalcConfig = acceptor.header;
       const listener: Driver<ICalcEventListener> = acceptor.getDriver();
-      const provider: CompositeCalculator = new CompositeCalculator(
-        header,
-        listener,
-      );
-      await acceptor.accept(provider);
+
+      // ACCEPT OR REJECT THE CONNECTION
+      if (pool >= 8) {
+        await acceptor.reject("Too much connections.");
+      } else {
+        await acceptor.accept(new CompositeCalculator(config, listener));
+        ++pool;
+        await acceptor.join();
+        --pool;
+      }
     },
   );
 };
