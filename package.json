@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "tgrid.example.object-oriented-network",
+  "name": "tgrid.example.shared-worker",
   "version": "1.0.0",
-  "description": "TGrid OON (Object Oriented Network) Example",
+  "description": "TGrid SharedWorker Example",
   "main": "index.js",
   "scripts": {
     "build": "tsc",
