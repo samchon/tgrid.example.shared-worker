@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "tgrid": "1.0.0-dev.20240507",
+    "tgrid": "^1.0.2",
     "tstl": "^3.0.0"
   },
   "devDependencies": {
@@ -25,6 +25,6 @@
     "prettier": "^3.2.5",
     "puppeteer": "^22.8.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.3"
   }
 }
